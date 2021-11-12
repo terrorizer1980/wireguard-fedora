@@ -16,7 +16,7 @@ on:
       - main
     paths:
       - "Dockerfile"
-      - "etc/unbound/unbound.conf"
+      - "start-wg"
   schedule:
     - cron: "19 7 * * 5"
 
