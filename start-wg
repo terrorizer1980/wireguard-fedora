@@ -2,5 +2,5 @@
 
 wg-quick up wg0 && wg
 
-sleep infinity &
-wait $!
+# '$!' is the process ID of the job most recently placed into the background
+sleep infinity & wait $!
