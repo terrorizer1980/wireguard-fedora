@@ -7,6 +7,16 @@ _Image for my personal use, not for the general public._
 docker pull ghcr.io/mibere/wireguard-fedora
 ```
 
+### or build locally
+```
+mkdir ~/docker-builds
+cd ~/docker-builds
+git clone https://github.com/mibere/wireguard-fedora.git
+cd wireguard-fedora
+docker build -t wireguard-fedora --pull --no-cache .
+docker rmi $(docker images -qa -f "dangling=true")
+```
+
 ### Start container
 ```
 docker run --name=wireguard --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --sysctl net.ipv4.ip_forward=1 --sysctl net.ipv6.conf.all.disable_ipv6=1 -p 48651:48651/udp -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
