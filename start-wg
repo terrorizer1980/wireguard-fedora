@@ -1,7 +1,7 @@
 #!/bin/bash
 
 wg_up() {
-    echo "wg up"
+    echo "$(date): wg_up"
     wg-quick up wg0
     if [ $? -eq 0 ]; then 
         wg && iptables -w -t nat -A POSTROUTING -o eth0 -j MASQUERADE
@@ -9,7 +9,7 @@ wg_up() {
 }
 
 wg_down() {
-    echo "wg down"
+    echo "$(date): wg_down"
     wg-quick down wg0
     iptables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 }
@@ -17,7 +17,7 @@ wg_down() {
 wg_up
 
 finish() {
-    echo "finish"
+    echo "$(date): finish"
     wg_down
     exit 0
 }
