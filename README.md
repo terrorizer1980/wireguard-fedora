@@ -31,7 +31,7 @@ sudo sysctl -p
 
 ### Start container
 ```
-docker run --name=wireguard --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --sysctl net.ipv4.ip_forward=1 --sysctl net.ipv6.conf.all.disable_ipv6=1 -p 48651:48651/udp -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
+docker run --name=wireguard --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --network=host -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
 ```
 
 ### Update container
@@ -39,5 +39,5 @@ docker run --name=wireguard --restart=always --cap-add SYS_MODULE --cap-add NET_
 docker stop wireguard
 docker rm wireguard
 docker pull ghcr.io/mibere/wireguard-fedora
-docker run --name=wireguard --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --sysctl net.ipv4.ip_forward=1 --sysctl net.ipv6.conf.all.disable_ipv6=1 -p 48651:48651/udp -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
+docker run --name=wireguard --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --network=host -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
 ```
