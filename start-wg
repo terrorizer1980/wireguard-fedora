@@ -1,6 +1,28 @@
 #!/bin/bash
 
-wg-quick up wg0 && wg
+wg_up() {
+    echo "wg up"
+    wg-quick up wg0
+    if [ $? -eq 0 ]; then 
+        wg && iptables -w -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+    fi
+}
+
+wg_down() {
+    echo "wg down"
+    wg-quick down wg0
+    iptables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+}
+
+wg_up
+
+finish() {
+    echo "finish"
+    wg_down
+    exit 0
+}
+
+trap finish TERM INT QUIT
 
 # '$!' is the process ID of the job most recently placed into the background
 sleep infinity & wait $!
