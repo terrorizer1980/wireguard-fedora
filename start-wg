@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -e /etc/wireguard/wg0.conf ]; then
+    echo "$(date): /etc/wireguard/wg0.conf not found" >&2
+    exit 1
+fi
+
 wg_up() {
     echo "$(date): wg_up"
     wg-quick up wg0
