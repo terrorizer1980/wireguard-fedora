@@ -33,7 +33,7 @@ sudo sysctl -p
 :exclamation: **Adapt the values for _DNS_ and _ENDPOINT_**
 
 ```
-docker run --name=wireguard -e DNS="xx" -e ENDPOINT="xx" --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --network=host -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
+docker run --name=wireguard -e DNS="192.168.1.1" -e ENDPOINT="my.dyn.dns" --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --network=host -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
 ```
 
 Show smartphone configuration as QR-code:
@@ -48,5 +48,5 @@ docker exec -it wireguard qrencode -t ansiutf8 -r "/etc/wireguard/clients/smartp
 docker stop wireguard
 docker rm wireguard
 docker pull ghcr.io/mibere/wireguard-fedora
-docker run --name=wireguard -e DNS="xx" -e ENDPOINT="xx" --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --network=host -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
+docker run --name=wireguard -e DNS="192.168.1.1" -e ENDPOINT="my.dyn.dns" --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --network=host -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
 ```
