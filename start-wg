@@ -5,6 +5,7 @@
 # https://github.com/denisix/wireguard
 
 init() {
+	[ -d /etc/wireguard/clients/ ] || mkdir -p /etc/wireguard/clients/
 	if [ ! -f /etc/wireguard/wg0.conf ]; then
         echo "$(date): init wg0"
 		wg genkey | tee /etc/wireguard/wg0.key | wg pubkey > /etc/wireguard/wg0.pub
@@ -18,7 +19,6 @@ EOF
 		chmod 600 /etc/wireguard/*
 	fi
 	
-	[ -d /etc/wireguard/clients/ ] || mkdir -p /etc/wireguard/clients/
 	if [ ! -f /etc/wireguard/clients/smartphone.conf ]; then
         echo "$(date): init smartphone"
 		wg genkey | tee /etc/wireguard/clients/smartphone.key | wg pubkey > /etc/wireguard/clients/smartphone.pub
@@ -44,6 +44,7 @@ EOF
 		echo "AllowedIPs = 192.168.20.2" >> /etc/wireguard/wg0.conf
 		echo "PublicKey = $CLIENT_PUB" >> /etc/wireguard/wg0.conf
 		echo "PresharedKey = $PSK" >> /etc/wireguard/wg0.conf
+		chmod 700 /etc/wireguard/clients/
 		chmod 600 /etc/wireguard/clients/*
 	fi	
 }
