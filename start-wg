@@ -5,7 +5,6 @@
 # https://github.com/denisix/wireguard
 
 init() {
-	[ -d /etc/wireguard/clients/ ] || mkdir -p /etc/wireguard/clients/
 	if [ ! -f /etc/wireguard/wg0.conf ]; then
         echo "$(date): init wg0"
 		wg genkey | tee /etc/wireguard/wg0.key | wg pubkey > /etc/wireguard/wg0.pub
@@ -21,6 +20,7 @@ EOF
 	
 	if [ ! -f /etc/wireguard/clients/smartphone.conf ]; then
         echo "$(date): init smartphone"
+		[ -d /etc/wireguard/clients/ ] || mkdir -p /etc/wireguard/clients/
 		wg genkey | tee /etc/wireguard/clients/smartphone.key | wg pubkey > /etc/wireguard/clients/smartphone.pub
 		wg genpsk > /etc/wireguard/clients/smartphone.psk
 		SERV_PUB=`cat /etc/wireguard/wg0.pub`
