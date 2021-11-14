@@ -19,7 +19,7 @@ docker rmi $(docker images -qa -f "dangling=true")
 
 ### Preparations on the host
 ```
-sudo nano /etc/sysctl.conf
+sudo nano /etc/sysctl.d/99-sysctl.conf
 ```
 
 > net.ipv6.conf.all.disable_ipv6 = 1  
