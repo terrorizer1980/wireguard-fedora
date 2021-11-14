@@ -29,7 +29,7 @@ EOF
 		PSK=`cat /etc/wireguard/clients/smartphone.psk`
 		cat > /etc/wireguard/clients/smartphone.conf << EOF
 [Interface]
-Address = 192.168.20.2/24
+Address = 192.168.20.2/32
 PrivateKey = ${CLIENT_KEY}
 DNS = ${DNS}
 
