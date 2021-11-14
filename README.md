@@ -33,7 +33,7 @@ sudo sysctl -p
 Adapt the values for _DNS_ and _ENDPOINT_.
 
 ```
-docker run --name=wireguard -e DNS=xx -e ENDPOINT=xx --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --network=host -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
+docker run --name=wireguard -e DNS="xx" -e ENDPOINT="xx" --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --network=host -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
 ```
 
 ### Update container
@@ -43,5 +43,5 @@ Adapt the values for _DNS_ and _ENDPOINT_.
 docker stop wireguard
 docker rm wireguard
 docker pull ghcr.io/mibere/wireguard-fedora
-docker run --name=wireguard -e DNS=xx -e ENDPOINT=xx --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --network=host -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
+docker run --name=wireguard -e DNS="xx" -e ENDPOINT="xx" --restart=always --cap-add SYS_MODULE --cap-add NET_ADMIN --network=host -v /etc/wireguard/:/etc/wireguard/ -d ghcr.io/mibere/wireguard-fedora
 ```
