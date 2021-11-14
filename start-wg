@@ -1,9 +1,23 @@
 #!/bin/bash
 
-if [ ! -e /etc/wireguard/wg0.conf ]; then
-    echo "$(date): /etc/wireguard/wg0.conf not found" >&2
-    exit 1
-fi
+# Ideas taken from
+# https://github.com/cmulk/wireguard-docker
+# https://github.com/denisix/wireguard
+
+init() {
+	if [ ! -f /etc/wireguard/wg0.conf ]; then
+        echo "$(date): init"
+		wg genkey | tee /etc/wireguard/wg0.key | wg pubkey > /etc/wireguard/wg0.pub
+		SERV_KEY=`cat /etc/wireguard/wg0.key`
+		cat > /etc/wireguard/wg0.conf << EOF
+[Interface]
+Address = 192.168.20.1/24
+ListenPort = 48651
+PrivateKey = $SERV_KEY
+EOF
+	chmod 600 /etc/wireguard/*
+	fi
+}
 
 wg_up() {
     echo "$(date): wg_up"
@@ -19,6 +33,7 @@ wg_down() {
     iptables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 }
 
+init
 wg_up
 
 finish() {
