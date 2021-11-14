@@ -8,4 +8,6 @@ RUN microdnf upgrade -y --nodocs --setopt=install_weak_deps=0 && \
 	rm -rf /var/cache/dnf/ /var/cache/yum/ /var/lib/dnf/ /tmp/* /var/tmp/* /var/log/*
 VOLUME ["/etc/wireguard/"]
 ENV WG_ENDPOINT_RESOLUTION_RETRIES="infinity"
+ENV DNS="192.168.1.1"
+ENV ENDPOINT="my.dyn.dns"
 CMD ["/usr/local/bin/start-wg"]
