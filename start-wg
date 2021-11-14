@@ -41,7 +41,7 @@ PresharedKey = ${PSK}
 PersistentKeepalive = 25
 EOF
 		echo -e "\n[Peer]" >> /etc/wireguard/wg0.conf
-		echo "AllowedIPs = 192.168.20.2" >> /etc/wireguard/wg0.conf
+		echo "AllowedIPs = 192.168.20.2/32" >> /etc/wireguard/wg0.conf
 		echo "PublicKey = ${CLIENT_PUB}" >> /etc/wireguard/wg0.conf
 		echo "PresharedKey = ${PSK}" >> /etc/wireguard/wg0.conf
 		chmod 600 /etc/wireguard/clients/*
