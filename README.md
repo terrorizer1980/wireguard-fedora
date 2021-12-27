@@ -46,7 +46,7 @@ docker exec -it wireguard qrencode -t ansiutf8 -r "/etc/wireguard/clients/smartp
 ```
 
 ### Update container
-:exclamation: **Adapt the values for _DNS_ and _ENDPOINT_**
+:exclamation: **Adapt the values for _DNS_ and _ENDPOINT_** (see running container `docker exec -it wireguard env`)
 
 ```
 docker stop wireguard
